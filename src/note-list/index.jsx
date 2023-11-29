@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addNote as addNoteAction } from "../notesReducer";
+import {
+  addNote as addNoteAction,
+  removeNote as removeNoteAction,
+} from "../notesReducer";
 import { Link } from "react-router-dom";
 
 const NotesList = () => {
@@ -21,6 +24,13 @@ const NotesList = () => {
         {notes.map((note) => (
           <li key={note.id}>
             <Link to={`/note/${note.id}`}>{note.text}</Link>
+            <button
+              onClick={() => {
+                dispatch(removeNoteAction(note.id));
+              }}
+            >
+              X
+            </button>
           </li>
         ))}
       </ul>

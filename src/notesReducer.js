@@ -10,9 +10,15 @@ export const notesSlice = createSlice({
       const id = Math.floor(Math.random() * 100);
       state.list.push({ id, text: action.payload });
     },
+    removeNote: (state, action) => {
+      return {
+        ...state,
+        list: state.list.filter((note) => note.id !== action.payload),
+      };
+    },
   },
 });
 
-export const { addNote } = notesSlice.actions;
+export const { addNote, removeNote } = notesSlice.actions;
 
 export default notesSlice.reducer;
